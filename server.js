@@ -1,64 +1,30 @@
 import 'dotenv/config';
 import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { getAllOrganizations } from './src/models/organizations.js';
-import { getAllProjects } from './src/models/projects.js';
-import { getAllCategories } from './src/models/categories.js';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import routes from './src/routes.js';
 
-// ESM does not provide __dirname, so build it from import.meta.url
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const port = process.env.PORT || 3000;
 const app = express();
 
-// Serve everything in /public (css, images) as static files
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Configure EJS as the template engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src', 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
-app.get('/', async (req, res) => {
-    const title = 'Home';
-    res.render('home', { title });
-});
+app.use(routes);
 
-app.get('/organizations', async (req, res, next) => {
-    const title = 'Partner Organizations';
-    try {
-        const organizations = await getAllOrganizations();
-        res.render('organizations', { title, organizations });
-    } catch (error) {
-        next(error);
-    }
-});
-
-app.get('/projects', async (req, res, next) => {
-    const title = 'Service Projects';
-    try {
-        const projects = await getAllProjects();
-        res.render('projects', { title, projects });
-    } catch (error) {
-        next(error);
-    }
-});
-
-app.get('/categories', async (req, res, next) => {
-    const title = 'Service Project Categories';
-    try {
-        const categories = await getAllCategories();
-        res.render('categories', { title, categories });
-    } catch (error) {
-        next(error);
-    }
+app.use((req, res) => {
+    res.status(404).render('404', { title: 'Page Not Found' });
 });
 
 app.use((error, req, res, next) => {
-    console.error('Database request failed:', error);
-    res.status(500).send('Database error: unable to load the requested data.');
+    console.error('Request failed:', error);
+    if (res.headersSent) {
+        return next(error);
+    }
+    res.status(500).render('500', { title: 'Server Error' });
 });
 
 app.listen(port, () => {

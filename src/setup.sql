@@ -46,21 +46,21 @@ INSERT INTO categories (name) VALUES
     ('Health and Wellness');
 
 INSERT INTO project (organization_id, name, description, location, schedule) VALUES
-    (1, 'Community Playground Build', 'Build and paint a safe neighborhood playground.', 'Riverside Community Park', '2026-04-11'),
-    (1, 'Neighborhood Housing Repair', 'Complete minor repairs for residents in need.', 'Eastview Homes', '2026-04-18'),
-    (1, 'Community Garden Construction', 'Construct raised garden beds and pathways.', 'Union Community Garden', '2026-05-02'),
-    (1, 'Accessible Ramp Installation', 'Install wheelchair ramps at local homes.', 'Central Family Center', '2026-05-09'),
-    (1, 'School Pavilion Restoration', 'Repair benches and paint a school pavilion.', 'Lincoln Elementary School', '2026-05-16'),
-    (2, 'Community Garden Workday', 'Plant vegetables and maintain community garden beds.', 'GreenHarvest Farm', '2026-04-12'),
-    (2, 'Urban Compost Workshop', 'Teach residents how to start home composting.', 'Westside Library', '2026-04-19'),
-    (2, 'Fresh Produce Distribution', 'Sort and distribute produce to local families.', 'GreenHarvest Market', '2026-05-03'),
-    (2, 'Youth Planting Class', 'Lead students through a seasonal planting activity.', 'Oak Street School Garden', '2026-05-10'),
-    (2, 'Community Orchard Cleanup', 'Prune trees and restore neighborhood orchard beds.', 'Maple Community Orchard', '2026-05-17'),
-    (3, 'Food Bank Volunteer Day', 'Sort donations and prepare grocery boxes.', 'UnityServe Food Bank', '2026-04-13'),
-    (3, 'Neighborhood Tutoring Event', 'Tutor students in reading and mathematics.', 'UnityServe Learning Hall', '2026-04-20'),
-    (3, 'Senior Wellness Check-in', 'Deliver wellness materials to local seniors.', 'Riverside Senior Center', '2026-05-04'),
-    (3, 'Community Cleanup', 'Collect litter and clean public gathering spaces.', 'Memorial Town Square', '2026-05-11'),
-    (3, 'Volunteer Health Fair', 'Help organizers set up a neighborhood health fair.', 'Central Wellness Center', '2026-05-18');
+    (1, 'Community Playground Build', 'Build and paint a safe neighborhood playground.', 'Riverside Community Park', CURRENT_DATE + 1),
+    (1, 'Neighborhood Housing Repair', 'Complete minor repairs for residents in need.', 'Eastview Homes', CURRENT_DATE + 4),
+    (1, 'Community Garden Construction', 'Construct raised garden beds and pathways.', 'Union Community Garden', CURRENT_DATE + 7),
+    (1, 'Accessible Ramp Installation', 'Install wheelchair ramps at local homes.', 'Central Family Center', CURRENT_DATE + 10),
+    (1, 'School Pavilion Restoration', 'Repair benches and paint a school pavilion.', 'Lincoln Elementary School', CURRENT_DATE + 13),
+    (2, 'Community Garden Workday', 'Plant vegetables and maintain community garden beds.', 'GreenHarvest Farm', CURRENT_DATE + 2),
+    (2, 'Urban Compost Workshop', 'Teach residents how to start home composting.', 'Westside Library', CURRENT_DATE + 5),
+    (2, 'Fresh Produce Distribution', 'Sort and distribute produce to local families.', 'GreenHarvest Market', CURRENT_DATE + 8),
+    (2, 'Youth Planting Class', 'Lead students through a seasonal planting activity.', 'Oak Street School Garden', CURRENT_DATE + 11),
+    (2, 'Community Orchard Cleanup', 'Prune trees and restore neighborhood orchard beds.', 'Maple Community Orchard', CURRENT_DATE + 14),
+    (3, 'Food Bank Volunteer Day', 'Sort donations and prepare grocery boxes.', 'UnityServe Food Bank', CURRENT_DATE + 3),
+    (3, 'Neighborhood Tutoring Event', 'Tutor students in reading and mathematics.', 'UnityServe Learning Hall', CURRENT_DATE + 6),
+    (3, 'Senior Wellness Check-in', 'Deliver wellness materials to local seniors.', 'Riverside Senior Center', CURRENT_DATE + 9),
+    (3, 'Community Cleanup', 'Collect litter and clean public gathering spaces.', 'Memorial Town Square', CURRENT_DATE + 12),
+    (3, 'Volunteer Health Fair', 'Help organizers set up a neighborhood health fair.', 'Central Wellness Center', CURRENT_DATE + 15);
 
 INSERT INTO project_categories (project_id, category_id) VALUES
     (1, 3), (1, 2),

@@ -2,22 +2,23 @@
 
 <main id="main-content" class="container">
     <h1><%= title %></h1>
-    <p class="lead">Upcoming volunteer opportunities. More details will be added soon.</p>
+    <p class="lead">Explore the next volunteer opportunities in your community.</p>
 
     <ul class="project-list">
         <% projects.forEach((project) => { %>
             <li class="panel">
                 <% const schedule = project.schedule instanceof Date ? project.schedule.toISOString().slice(0, 10) : String(project.schedule).slice(0, 10); %>
                 <% const displayDate = new Date(`${schedule}T00:00:00`).toLocaleDateString('en-US'); %>
-                <h2><%= displayDate %>: <%= project.name %> (<%= project.organization %>)</h2>
+                <h2><time datetime="<%= schedule %>"><%= displayDate %></time>: <a href="/project/<%= project.id %>"><%= project.name %></a></h2>
                 <p><%= project.description %></p>
-                <p><strong>Organization:</strong> <%= project.organization %></p>
+                <p><strong>Organization:</strong> <a href="/organization/<%= project.organizationId %>"><%= project.organization %></a></p>
                 <p><strong>Location:</strong> <%= project.location %></p>
-                <p><strong>Schedule:</strong> <time datetime="<%= schedule %>"><%= displayDate %></time></p>
-                <p><strong>Categories:</strong> <%= project.categories.join(', ') %></p>
             </li>
         <% }) %>
     </ul>
+    <% if (projects.length === 0) { %>
+        <p>No upcoming service projects are currently scheduled. Please check back soon.</p>
+    <% } %>
 </main>
 
 <%- include('partials/footer') %>

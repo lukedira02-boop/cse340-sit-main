@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+
+<main id="main-content" class="container">
+    <p><a href="/projects">Upcoming projects</a></p>
+    <article class="panel">
+        <h1><%= project.name %></h1>
+        <p><%= project.description %></p>
+        <p><strong>Organization:</strong> <a href="/organization/<%= project.organizationId %>"><%= project.organization %></a></p>
+        <p><strong>Location:</strong> <%= project.location %></p>
+        <% const schedule = project.schedule instanceof Date ? project.schedule.toISOString().slice(0, 10) : String(project.schedule).slice(0, 10); %>
+        <p><strong>Schedule:</strong> <time datetime="<%= schedule %>"><%= new Date(`${schedule}T00:00:00`).toLocaleDateString('en-US') %></time></p>
+        <h2>Categories</h2>
+        <% if (categories.length > 0) { %>
+            <ul class="tag-list">
+                <% categories.forEach((category) => { %>
+                    <li><a class="category-tag" href="/category/<%= category.id %>"><%= category.name %></a></li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>This project has not been assigned to a category.</p>
+        <% } %>
+    </article>
+</main>
+
+<%- include('partials/footer') %>

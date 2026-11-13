@@ -203,6 +203,37 @@ main {
     font-weight: 600;
 }
 
+.category-list a {
+    color: var(--color-primary-dark);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.category-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--color-primary);
+    border-radius: 999px;
+    background: #e7f1eb;
+    color: var(--color-primary-dark);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.category-tag:hover {
+    background: #d7e9dd;
+    text-decoration: underline;
+}
+
 /* 6. Footer -------------------------------------------------------------- */
 .site-footer {
     background: var(--color-header);

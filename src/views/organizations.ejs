@@ -11,7 +11,7 @@
                     <img src="<%= organization.logo.startsWith('/') ? organization.logo : `/images/${organization.logo}` %>" alt="<%= organization.name %> logo" width="320" height="200">
                 <% } %>
                 <div class="card-body">
-                    <h2><%= organization.name %></h2>
+                    <h2><a href="/organization/<%= organization.id %>"><%= organization.name %></a></h2>
                     <p><%= organization.description %></p>
                     <p class="contact"><a href="mailto:<%= organization.email %>"><%= organization.email %></a></p>
                 </div>
