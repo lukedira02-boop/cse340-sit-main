@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+
+<main id="main-content" class="container">
+    <p><a href="/project/<%= project.id %>">Back to service project</a></p>
+    <% const scheduleValue = project.schedule instanceof Date ? project.schedule.toISOString().slice(0, 10) : String(project.schedule).slice(0, 10); %>
+    <section class="panel form-panel">
+        <h1><%= title %></h1>
+        <form action="/edit-project/<%= project.id %>" method="POST">
+            <div class="form-field">
+                <label for="name">Project name</label>
+                <input id="name" name="name" type="text" maxlength="150" value="<%= project.name %>" required>
+            </div>
+            <div class="form-field">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" maxlength="1000" required><%= project.description %></textarea>
+            </div>
+            <div class="form-field">
+                <label for="location">Location</label>
+                <input id="location" name="location" type="text" maxlength="200" value="<%= project.location %>" required>
+            </div>
+            <div class="form-field">
+                <label for="schedule">Date</label>
+                <input id="schedule" name="schedule" type="date" value="<%= scheduleValue %>" required>
+            </div>
+            <div class="form-field">
+                <label for="organizationId">Organization</label>
+                <select id="organizationId" name="organizationId" required>
+                    <% organizations.forEach((organization) => { %>
+                        <option value="<%= organization.id %>" <%= Number(organization.id) === Number(project.organizationId) ? 'selected' : '' %>><%= organization.name %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <button class="button" type="submit">Update Service Project</button>
+        </form>
+    </section>
+</main>
+
+<%- include('partials/footer') %>

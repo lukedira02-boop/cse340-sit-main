@@ -3,6 +3,7 @@
 <main id="main-content" class="container">
     <p><a href="/organizations">All organizations</a></p>
     <article class="panel">
+        <p><a class="button button-secondary" href="/edit-organization/<%= organization.id %>">Edit Organization</a></p>
         <% if (organization.logo) { %>
             <img src="<%= organization.logo.startsWith('/') ? organization.logo : `/images/${organization.logo}` %>" alt="<%= organization.name %> logo" width="320" height="200">
         <% } %>

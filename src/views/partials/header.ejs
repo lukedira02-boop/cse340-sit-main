@@ -21,3 +21,13 @@
             </nav>
         </div>
     </header>
+    <% if (messages && (messages.success.length || messages.error.length)) { %>
+        <div class="container flash-messages" aria-live="polite">
+            <% messages.success.forEach((message) => { %>
+                <p class="flash-message flash-success" role="status"><%= message %></p>
+            <% }) %>
+            <% messages.error.forEach((message) => { %>
+                <p class="flash-message flash-error" role="alert"><%= message %></p>
+            <% }) %>
+        </div>
+    <% } %>

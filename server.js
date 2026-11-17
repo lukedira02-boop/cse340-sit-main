@@ -1,5 +1,8 @@
 import 'dotenv/config';
+import { randomBytes } from 'node:crypto';
 import express from 'express';
+import session from 'express-session';
+import flash from 'connect-flash';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import routes from './src/routes.js';
@@ -12,6 +15,28 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src', 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: false }));
+if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1);
+}
+app.use(session({
+    secret: process.env.SESSION_SECRET || randomBytes(32).toString('hex'),
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production'
+    }
+}));
+app.use(flash());
+app.use((req, res, next) => {
+    res.locals.messages = {
+        success: req.flash('success'),
+        error: req.flash('error')
+    };
+    next();
+});
 
 app.use(routes);
 

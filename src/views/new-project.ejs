@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+
+<main id="main-content" class="container">
+    <p><a href="/projects">All service projects</a></p>
+    <section class="panel form-panel">
+        <h1><%= title %></h1>
+        <form action="/new-project" method="POST">
+            <div class="form-field">
+                <label for="name">Project name</label>
+                <input id="name" name="name" type="text" maxlength="150" required>
+            </div>
+            <div class="form-field">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" maxlength="1000" required></textarea>
+            </div>
+            <div class="form-field">
+                <label for="location">Location</label>
+                <input id="location" name="location" type="text" maxlength="200" required>
+            </div>
+            <div class="form-field">
+                <label for="schedule">Date</label>
+                <input id="schedule" name="schedule" type="date" required>
+            </div>
+            <div class="form-field">
+                <label for="organizationId">Organization</label>
+                <select id="organizationId" name="organizationId" required>
+                    <option value="">Select an organization</option>
+                    <% organizations.forEach((organization) => { %>
+                        <option value="<%= organization.id %>"><%= organization.name %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <button class="button" type="submit">Create Service Project</button>
+        </form>
+    </section>
+</main>
+
+<%- include('partials/footer') %>
