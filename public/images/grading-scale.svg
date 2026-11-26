@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 474 268" role="img" aria-labelledby="title description">
+  <title id="title">Sample Standards-Based Grading Scale</title>
+  <desc id="description">A four-level grading scale: 4 Advanced, 3 Meets Standards, 2 Limited Mastery, and 1 Little Mastery.</desc>
+  <rect width="474" height="268" fill="#07374f"/>
+  <path fill="#087d97" d="M0 0h474v40H0z"/>
+  <text x="237" y="26" fill="#f5fbfc" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" text-anchor="middle">Sample Standards-Based Grading Scale</text>
+
+  <!-- Assessment sheet icon -->
+  <g fill="none" stroke="#f5fbfc" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="5" d="M26 77V71q0-9 9-9h108q9 0 9 9v104m-126-1V86m0 89q0 9 9 9h108q9 0 9-9"/>
+    <rect x="44" y="75" width="89" height="18" rx="8" stroke-width="4"/>
+    <path stroke-width="4" d="M57 84h62M87 99v3"/>
+    <rect x="42" y="109" width="24" height="23" rx="3" stroke-width="4"/>
+    <path stroke-width="4" d="m47 119 6 6 11-14m13 1h48m-48 12h38"/>
+    <rect x="42" y="146" width="24" height="23" rx="3" stroke-width="4"/>
+    <path stroke-width="4" d="m47 156 6 6 11-14m13 1h48m-48 12h38"/>
+    <path stroke-width="4" d="m47 189 6 6 11-14m13 1h48m-48 12h38"/>
+  </g>
+  <text x="86" y="237" fill="#f5fbfc" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="400">A+</text>
+
+  <!-- Person icons -->
+  <g fill="none" stroke="#11b7bc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <g id="person">
+      <circle cx="0" cy="0" r="5.5"/>
+      <path d="M-6-1q0-7 6-7t6 7M-7 6q0-5 7-5t7 5v8H-7zM-3 8v6m6-6v6M-8 10h16"/>
+      <path d="m-3-4 3 2 3-2"/>
+    </g>
+  </g>
+  <g fill="none" stroke="#11b7bc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <use href="#person" x="220" y="60"/><use href="#person" x="247" y="60"/><use href="#person" x="274" y="60"/><use href="#person" x="301" y="60"/>
+    <use href="#person" x="220" y="116"/><use href="#person" x="247" y="116"/><use href="#person" x="274" y="116"/>
+    <use href="#person" x="220" y="173"/><use href="#person" x="247" y="173"/>
+    <use href="#person" x="220" y="228"/>
+  </g>
+
+  <!-- Proficiency descriptions -->
+  <g fill="#f5fbfc" font-family="Arial, Helvetica, sans-serif">
+    <text x="333" y="69" font-size="23" font-weight="700">4</text>
+    <text x="356" y="69" font-size="17">- Advanced</text>
+    <text x="333" y="125" font-size="23" font-weight="700">3</text>
+    <text x="356" y="125" font-size="17">- Meets</text>
+    <text x="356" y="145" font-size="17">Standards</text>
+    <text x="333" y="182" font-size="23" font-weight="700">2</text>
+    <text x="356" y="182" font-size="17">- Limited</text>
+    <text x="356" y="202" font-size="17">Mastery</text>
+    <text x="333" y="228" font-size="23" font-weight="700">1</text>
+    <text x="356" y="228" font-size="17">- Little</text>
+    <text x="356" y="248" font-size="17">Mastery</text>
+  </g>
+
+  <!-- Source footer -->
+  <rect y="254" width="474" height="14" fill="#f7f9fa"/>
+  <text x="10" y="265" fill="#354a50" font-family="Arial, Helvetica, sans-serif" font-size="10">Source: Power School, 2021</text>
+  <text x="345" y="266" fill="#18323a" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">Research.com</text>
+</svg>
