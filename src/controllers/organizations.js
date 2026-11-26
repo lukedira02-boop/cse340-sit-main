@@ -4,6 +4,7 @@ import { createOrganization, updateOrganization } from '../models/organizations.
 import { getProjectsByOrganizationId } from '../models/projects.js';
 
 const isValidId = (id) => /^\d+$/.test(id) && Number(id) > 0;
+const DEFAULT_ORGANIZATION_LOGO = '/images/organization-placeholder.svg';
 
 export const organizationValidation = [
     body('name').trim().notEmpty().withMessage('Organization name is required.')
@@ -13,8 +14,8 @@ export const organizationValidation = [
     body('contactEmail').trim().notEmpty().withMessage('Contact email is required.')
         .isEmail().withMessage('Enter a valid contact email.')
         .isLength({ max: 255 }).withMessage('Contact email cannot exceed 255 characters.'),
-    body('logoFilename').trim().notEmpty().withMessage('Logo filename is required.')
-        .isLength({ max: 255 }).withMessage('Logo filename cannot exceed 255 characters.')
+    body('logoFilename').optional({ values: 'falsy' }).trim()
+        .isLength({ max: 255 }).withMessage('Logo path cannot exceed 255 characters.')
 ];
 
 export const showOrganizationsPage = async (req, res, next) => {
@@ -37,9 +38,9 @@ export const processNewOrganizationForm = async (req, res, next) => {
         return res.redirect('/new-organization');
     }
 
-    const { name, description, contactEmail, logoFilename } = req.body;
+    const { name, description, contactEmail } = req.body;
     try {
-        const id = await createOrganization(name, description, contactEmail, logoFilename);
+        const id = await createOrganization(name, description, contactEmail, DEFAULT_ORGANIZATION_LOGO);
         req.flash('success', 'Organization created successfully.');
         res.redirect(`/organization/${id}`);
     } catch (error) {
@@ -81,7 +82,10 @@ export const processEditOrganizationForm = async (req, res, next) => {
             return res.status(404).render('404', { title: 'Page Not Found' });
         }
 
-        await updateOrganization(Number(req.params.id), name, description, contactEmail, logoFilename);
+        const logo = typeof logoFilename === 'string' && logoFilename.trim()
+            ? logoFilename.trim()
+            : organization.logo || DEFAULT_ORGANIZATION_LOGO;
+        await updateOrganization(Number(req.params.id), name, description, contactEmail, logo);
         req.flash('success', 'Organization updated successfully.');
         res.redirect(`/organization/${req.params.id}`);
     } catch (error) {

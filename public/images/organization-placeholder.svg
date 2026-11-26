@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="title">
+  <title id="title">Community organization placeholder</title>
+  <rect width="640" height="400" fill="#e5eee8"/>
+  <circle cx="320" cy="160" r="76" fill="#287a67" opacity=".14"/>
+  <path d="M320 106c-30 0-54 24-54 54 0 18 9 34 23 44-43 11-73 41-73 77h208c0-36-30-66-73-77 14-10 23-26 23-44 0-30-24-54-54-54z" fill="#287a67"/>
+  <path d="M120 318h400" stroke="#dcae5b" stroke-width="8" stroke-linecap="round"/>
+</svg>

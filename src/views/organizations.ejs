@@ -8,9 +8,7 @@
     <div class="card-grid">
         <% organizations.forEach((organization) => { %>
             <article class="card">
-                <% if (organization.logo) { %>
-                    <img src="<%= organization.logo.startsWith('/') ? organization.logo : `/images/${organization.logo}` %>" alt="<%= organization.name %> logo" width="320" height="200">
-                <% } %>
+                <img src="<%= organization.logo ? (/^(https?:)?\/\//i.test(organization.logo) || organization.logo.startsWith('/') ? organization.logo : `/images/${organization.logo}`) : '/images/organization-placeholder.svg' %>" alt="<%= organization.name %>" width="320" height="200">
                 <div class="card-body">
                     <h2><a href="/organization/<%= organization.id %>"><%= organization.name %></a></h2>
                     <p><%= organization.description %></p>

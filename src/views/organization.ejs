@@ -4,9 +4,7 @@
     <p><a href="/organizations">All organizations</a></p>
     <article class="panel">
         <p><a class="button button-secondary" href="/edit-organization/<%= organization.id %>">Edit Organization</a></p>
-        <% if (organization.logo) { %>
-            <img src="<%= organization.logo.startsWith('/') ? organization.logo : `/images/${organization.logo}` %>" alt="<%= organization.name %> logo" width="320" height="200">
-        <% } %>
+        <img class="organization-detail-image" src="<%= organization.logo ? (/^(https?:)?\/\//i.test(organization.logo) || organization.logo.startsWith('/') ? organization.logo : `/images/${organization.logo}`) : '/images/organization-placeholder.svg' %>" alt="<%= organization.name %>" width="640" height="400">
         <h1><%= organization.name %></h1>
         <p><%= organization.description %></p>
         <p><strong>Contact:</strong> <a href="mailto:<%= organization.email %>"><%= organization.email %></a></p>
