@@ -152,6 +152,7 @@ main {
 }
 
 .form-panel { max-width: 38rem; }
+.form-panel form { display: grid; gap: 1.2rem; }
 
 .eyebrow {
     margin-bottom: 0.45rem;
@@ -164,7 +165,9 @@ main {
 
 .account-form { display: grid; gap: 1.2rem; margin-top: var(--space-3); }
 .form-group { display: grid; gap: 0.4rem; }
+.form-field { display: grid; gap: 0.4rem; }
 .form-group label { font-weight: 700; }
+.form-field label { font-weight: 700; }
 .form-group input {
     width: 100%;
     min-height: 3rem;
@@ -175,6 +178,24 @@ main {
     color: var(--color-ink);
     font: inherit;
 }
+.form-field input,
+.form-field textarea,
+.form-field select {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid #aebdb5;
+    border-radius: var(--radius);
+    background: #fcfdfc;
+    color: var(--color-ink);
+    font: inherit;
+}
+.form-field textarea { min-height: 9rem; resize: vertical; }
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus { outline: 3px solid rgba(31, 92, 61, 0.2); border-color: var(--color-primary); }
+.form-field small,
+.image-placeholder-note { color: var(--color-muted); font-size: 0.92rem; }
 .form-group input:focus { outline: 3px solid rgba(31, 92, 61, 0.2); border-color: var(--color-primary); }
 .form-group small,.form-footnote { color: var(--color-muted); font-size: 0.92rem; }
 .form-footnote { margin: var(--space-3) 0 0; }
