@@ -1,25 +1,51 @@
 <%- include('partials/header') %>
 
 <main id="main-content" class="container">
-    <p><a href="/organization/<%= organization.id %>">Back to organization</a></p>
+    <% const formErrors = typeof errors === 'undefined' ? [] : errors; %>
+    <% const fieldErrors = (field) => formErrors.filter((error) => error.path === field); %>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/organizations">Organizations</a>
+        <span aria-hidden="true">/</span>
+        <a href="/organization/<%= organization.id %>">Back to <%= organization.name %></a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Edit</span>
+    </nav>
     <section class="panel form-panel">
+        <p class="eyebrow">Organization details</p>
         <h1><%= title %></h1>
+        <p class="lead">Update the information people use to find and contact this organization.</p>
+        <% if (formErrors.length) { %>
+            <div class="form-error-summary" role="alert" aria-labelledby="edit-errors-heading">
+                <h2 id="edit-errors-heading">Please correct the following</h2>
+                <ul>
+                    <% formErrors.forEach((error) => { %>
+                        <li><%= error.msg %></li>
+                    <% }) %>
+                </ul>
+            </div>
+        <% } %>
         <form action="/edit-organization/<%= organization.id %>" method="POST">
             <div class="form-field">
                 <label for="name">Organization name</label>
-                <input id="name" name="name" type="text" maxlength="150" value="<%= organization.name %>" required>
+                <input id="name" name="name" type="text" minlength="3" maxlength="150" value="<%= organization.name %>" autocomplete="organization" aria-invalid="<%= fieldErrors('name').length > 0 %>" aria-describedby="name-hint<%= fieldErrors('name').length ? ' name-error' : '' %>" required>
+                <small id="name-hint">Use 3 to 150 characters.</small>
+                <% if (fieldErrors('name').length) { %><small class="field-error" id="name-error"><%= fieldErrors('name').map((error) => error.msg).join(' ') %></small><% } %>
             </div>
             <div class="form-field">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" maxlength="500" required><%= organization.description %></textarea>
+                <textarea id="description" name="description" rows="6" maxlength="500" aria-invalid="<%= fieldErrors('description').length > 0 %>" aria-describedby="description-hint<%= fieldErrors('description').length ? ' description-error' : '' %>" required><%= organization.description %></textarea>
+                <small id="description-hint">Describe the organization in 500 characters or fewer.</small>
+                <% if (fieldErrors('description').length) { %><small class="field-error" id="description-error"><%= fieldErrors('description').map((error) => error.msg).join(' ') %></small><% } %>
             </div>
             <div class="form-field">
                 <label for="contactEmail">Contact email</label>
-                <input id="contactEmail" name="contactEmail" type="email" maxlength="255" value="<%= organization.email %>" required>
+                <input id="contactEmail" name="contactEmail" type="email" maxlength="255" value="<%= organization.email %>" autocomplete="email" aria-invalid="<%= fieldErrors('contactEmail').length > 0 %>" aria-describedby="email-hint<%= fieldErrors('contactEmail').length ? ' email-error' : '' %>" required>
+                <small id="email-hint">Use an address volunteers can use to contact the organization.</small>
+                <% if (fieldErrors('contactEmail').length) { %><small class="field-error" id="email-error"><%= fieldErrors('contactEmail').map((error) => error.msg).join(' ') %></small><% } %>
             </div>
             <div class="form-field">
                 <label for="logoFilename">Organization image path</label>
-                <input id="logoFilename" name="logoFilename" type="text" list="organization-image-options" maxlength="255" value="<%= organization.logo %>" placeholder="Choose a suggestion or enter an image path">
+                <input id="logoFilename" name="logoFilename" type="text" list="organization-image-options" maxlength="255" value="<%= organization.logo %>" placeholder="Choose a suggestion or enter an image path" aria-invalid="<%= fieldErrors('logoFilename').length > 0 %>" aria-describedby="logo-hint<%= fieldErrors('logoFilename').length ? ' logo-error' : '' %>">
                 <datalist id="organization-image-options">
                     <option value="/images/organization-placeholder.svg">Placeholder</option>
                     <option value="/images/bright-futures-tutoring.svg">Bright Futures Tutoring</option>
@@ -34,9 +60,13 @@
                     <option value="/images/community-hero.svg">Community</option>
                     <option value="/images/community-hero.jpg">Community photo</option>
                 </datalist>
-                <small>Keep the current value to retain this image, choose a bundled image suggestion, or enter an image path or HTTPS URL.</small>
+                <small id="logo-hint">Keep the current value to retain this image, choose a bundled image suggestion, or enter an image path or HTTPS URL.</small>
+                <% if (fieldErrors('logoFilename').length) { %><small class="field-error" id="logo-error"><%= fieldErrors('logoFilename').map((error) => error.msg).join(' ') %></small><% } %>
             </div>
-            <button class="button" type="submit">Update Organization</button>
+            <div class="form-actions">
+                <button class="button" type="submit">Save changes</button>
+                <a class="button button-secondary" href="/organization/<%= organization.id %>">Cancel</a>
+            </div>
         </form>
     </section>
 </main>

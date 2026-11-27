@@ -58,7 +58,7 @@ export const showEditOrganizationForm = async (req, res, next) => {
         if (!organization) {
             return res.status(404).render('404', { title: 'Page Not Found' });
         }
-        res.render('edit-organization', { title: 'Edit Organization', organization });
+        res.render('edit-organization', { title: 'Edit Organization', organization, errors: [] });
     } catch (error) {
         next(error);
     }
@@ -69,19 +69,29 @@ export const processEditOrganizationForm = async (req, res, next) => {
         return res.status(404).render('404', { title: 'Page Not Found' });
     }
 
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        errors.array().forEach(({ msg }) => req.flash('error', msg));
-        return res.redirect(`/edit-organization/${req.params.id}`);
-    }
-
-    const { name, description, contactEmail, logoFilename } = req.body;
     try {
         const organization = await getOrganizationById(Number(req.params.id));
         if (!organization) {
             return res.status(404).render('404', { title: 'Page Not Found' });
         }
 
+        const errors = validationResult(req).array();
+        if (errors.length > 0) {
+            const submitted = (value, fallback) => typeof value === 'string' ? value : fallback;
+            return res.status(422).render('edit-organization', {
+                title: 'Edit Organization',
+                organization: {
+                    ...organization,
+                    name: submitted(req.body.name, organization.name),
+                    description: submitted(req.body.description, organization.description),
+                    email: submitted(req.body.contactEmail, organization.email),
+                    logo: submitted(req.body.logoFilename, organization.logo)
+                },
+                errors
+            });
+        }
+
+        const { name, description, contactEmail, logoFilename } = req.body;
         const logo = typeof logoFilename === 'string' && logoFilename.trim()
             ? logoFilename.trim()
             : organization.logo || DEFAULT_ORGANIZATION_LOGO;
