@@ -8,6 +8,7 @@
     "start": "node server.js",
     "dev": "node --watch server.js",
     "db:setup": "node src/setup-db.js",
+    "db:migrate-auth": "node src/migrate-auth-schema.js",
     "db:setup-admin": "node src/setup-admin.js",
     "db:refresh-project-dates": "node src/refresh-project-dates.js"
   },

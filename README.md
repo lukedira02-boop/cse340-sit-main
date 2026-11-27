@@ -25,10 +25,11 @@ Visitors can register at `/register` and sign in at `/login`. Passwords are
 stored as bcrypt hashes. The dashboard requires a signed-in account, and the
 user directory and content-management forms require the `admin` role.
 
-For the CSE 340 grading environment, configure the dedicated account against
-the database you intend to submit:
+For an existing database, add the authentication tables without rebuilding
+your organizations and projects, then configure the dedicated grading account:
 
 ```powershell
+npm run db:migrate-auth
 npm run db:setup-admin
 ```
 
