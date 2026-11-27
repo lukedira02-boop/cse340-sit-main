@@ -3,7 +3,9 @@
 <main id="main-content" class="container">
     <h1><%= title %></h1>
     <p class="lead">Explore the next volunteer opportunities in your community.</p>
-    <p><a class="button" href="/new-project">Add a Service Project</a></p>
+    <% if (currentUser?.role_name === 'admin') { %>
+        <p><a class="button" href="/new-project">Add a Service Project</a></p>
+    <% } %>
 
     <ul class="project-list">
         <% projects.forEach((project) => { %>

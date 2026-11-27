@@ -15,6 +15,9 @@
         <p>Find an organization you care about, pick a project that fits your schedule, and show up. Every project is grouped by category so you can focus on the kind of work that matters most to you.</p>
         <p><a href="/categories">See all project categories</a></p>
     </section>
+    <% if (isLoggedIn) { %>
+        <p class="dashboard-link"><a class="button" href="/dashboard">My Dashboard</a></p>
+    <% } %>
 </main>
 
 <%- include('partials/footer') %>

@@ -15,7 +15,26 @@ npm run db:setup
 npm start
 ```
 
+Set `SESSION_SECRET` to a long random value in `.env` and in the hosted service
+environment. The Render Blueprint generates one automatically.
+
 Open http://127.0.0.1:3000
+
+## Accounts and access
+Visitors can register at `/register` and sign in at `/login`. Passwords are
+stored as bcrypt hashes. The dashboard requires a signed-in account, and the
+user directory and content-management forms require the `admin` role.
+
+For the CSE 340 grading environment, configure the dedicated account against
+the database you intend to submit:
+
+```powershell
+npm run db:setup-admin
+```
+
+This creates or resets `admin@example.com` with the course test password
+`cse340!` and assigns the admin role. Run it only for the course grading
+database; the credentials are intentionally fixed by the assignment.
 
 ## Database setup
 Set `DATABASE_URL` in `.env` to a PostgreSQL connection string, then initialize

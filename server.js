@@ -31,6 +31,8 @@ app.use(session({
 }));
 app.use(flash());
 app.use((req, res, next) => {
+    res.locals.currentUser = req.session?.user ?? null;
+    res.locals.isLoggedIn = Boolean(req.session?.user);
     res.locals.messages = {
         success: req.flash('success'),
         error: req.flash('error')

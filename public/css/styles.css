@@ -140,6 +140,118 @@ main {
     padding: var(--space-3);
 }
 
+.form-panel,
+.users-panel {
+    max-width: 48rem;
+    margin: var(--space-3) auto;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 1px solid var(--color-border);
+    border-radius: calc(var(--radius) * 2);
+    background: var(--color-surface);
+    box-shadow: 0 16px 40px rgba(20, 41, 31, 0.07);
+}
+
+.form-panel { max-width: 38rem; }
+
+.eyebrow {
+    margin-bottom: 0.45rem;
+    color: var(--color-primary);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.account-form { display: grid; gap: 1.2rem; margin-top: var(--space-3); }
+.form-group { display: grid; gap: 0.4rem; }
+.form-group label { font-weight: 700; }
+.form-group input {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid #aebdb5;
+    border-radius: var(--radius);
+    background: #fcfdfc;
+    color: var(--color-ink);
+    font: inherit;
+}
+.form-group input:focus { outline: 3px solid rgba(31, 92, 61, 0.2); border-color: var(--color-primary); }
+.form-group small,.form-footnote { color: var(--color-muted); font-size: 0.92rem; }
+.form-footnote { margin: var(--space-3) 0 0; }
+.form-panel .button { cursor: pointer; font: inherit; }
+
+.dashboard-intro { margin: 0 0 var(--space-3); }
+.dashboard-intro h1 { margin-bottom: 0.6rem; }
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: calc(var(--radius) * 2);
+    background: var(--color-surface);
+}
+.profile-card h2 { margin-bottom: 0.25rem; }
+.profile-card p { margin-bottom: 0; }
+.profile-mark,.user-initial {
+    display: inline-grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: #e4f0e8;
+    color: var(--color-primary-dark);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.role-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid #c5ddcd;
+    border-radius: 999px;
+    background: #edf6ef;
+    color: var(--color-primary-dark);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.profile-card .role-pill { margin-left: auto; }
+.admin-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+    padding: var(--space-3);
+    border-radius: calc(var(--radius) * 2);
+    background: var(--color-header);
+    color: #fff;
+}
+.admin-panel h2 { margin-bottom: 0.5rem; color: #fff; }
+.admin-panel p:not(.eyebrow) { margin-bottom: 0; color: #d5e2da; }
+.admin-panel .eyebrow { color: #a8d7b7; }
+.admin-panel .button { flex: 0 0 auto; border-color: #b4ddc0; background: #b4ddc0; color: #14291f; }
+.admin-panel .button:hover { border-color: #d2ecd9; background: #d2ecd9; }
+.dashboard-actions { margin-top: var(--space-3); }
+.dashboard-actions h2 { margin-bottom: 0.5rem; }
+.dashboard-actions .button { margin-bottom: 0; }
+.dashboard-link { margin: var(--space-3) 0 0; }
+
+.users-panel { max-width: none; }
+.users-panel-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-2); margin-bottom: var(--space-2); }
+.users-panel-heading h2 { margin-bottom: 0; }
+.user-count { color: var(--color-muted); font-size: 0.9rem; }
+.table-scroll { overflow-x: auto; }
+.users-table { width: 100%; border-collapse: collapse; text-align: left; }
+.users-table th { padding: 0.8rem 1rem; background: #f1f6f3; color: var(--color-muted); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.users-table td { padding: 0.95rem 1rem; border-bottom: 1px solid var(--color-border); }
+.users-table td:first-child { display: flex; align-items: center; gap: 0.7rem; }
+.user-initial { width: 2.25rem; height: 2.25rem; font-size: 1rem; }
+.empty-state { padding: var(--space-3); border-radius: var(--radius); background: #f5f8f6; color: var(--color-muted); }
+
 .button {
     display: inline-block;
     margin: 0 var(--space-1) var(--space-1) 0;
@@ -261,6 +373,11 @@ main {
     }
 
     .container { padding: 0 var(--space-2); }
+
+    .profile-card { align-items: flex-start; flex-wrap: wrap; }
+    .profile-card .role-pill { margin-left: 0; }
+    .admin-panel { align-items: flex-start; flex-direction: column; }
+    .users-panel-heading { flex-direction: column; }
 }
 
 /* 8. Accessibility ------------------------------------------------------- */

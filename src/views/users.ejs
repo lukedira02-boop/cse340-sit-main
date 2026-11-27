@@ -1,0 +1,42 @@
+<%- include('partials/header') %>
+
+<main id="main-content" class="container">
+    <section class="dashboard-intro">
+        <p class="eyebrow">Administration</p>
+        <h1><%= title %></h1>
+        <p class="lead">A directory of accounts registered with Service Connect.</p>
+    </section>
+
+    <section class="users-panel" aria-labelledby="users-heading">
+        <div class="users-panel-heading">
+            <div>
+                <p class="eyebrow">Account directory</p>
+                <h2 id="users-heading">Community members</h2>
+            </div>
+            <span class="user-count"><%= users.length %> <%= users.length === 1 ? 'account' : 'accounts' %></span>
+        </div>
+        <% if (users.length) { %>
+            <div class="table-scroll">
+                <table class="users-table">
+                    <thead>
+                        <tr><th scope="col">Name</th><th scope="col">Email</th><th scope="col">Role</th></tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach((user) => { %>
+                            <tr>
+                                <td><span class="user-initial"><%= user.name.trim().charAt(0).toUpperCase() %></span><strong><%= user.name %></strong></td>
+                                <td><a href="mailto:<%= user.email %>"><%= user.email %></a></td>
+                                <td><span class="role-pill"><%= user.role_name %></span></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        <% } else { %>
+            <p class="empty-state">There are no registered accounts yet.</p>
+        <% } %>
+        <p class="form-footnote"><a href="/dashboard">Return to dashboard</a></p>
+    </section>
+</main>
+
+<%- include('partials/footer') %>

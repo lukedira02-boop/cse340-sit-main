@@ -3,7 +3,9 @@
 <main id="main-content" class="container">
     <p><a href="/organizations">All organizations</a></p>
     <article class="panel">
-        <p><a class="button button-secondary" href="/edit-organization/<%= organization.id %>">Edit Organization</a></p>
+        <% if (currentUser?.role_name === 'admin') { %>
+            <p><a class="button button-secondary" href="/edit-organization/<%= organization.id %>">Edit Organization</a></p>
+        <% } %>
         <img class="organization-detail-image" src="<%= organization.logo ? (/^(https?:)?\/\//i.test(organization.logo) || organization.logo.startsWith('/') ? organization.logo : `/images/${organization.logo}`) : '/images/organization-placeholder.svg' %>" alt="<%= organization.name %>" width="640" height="400">
         <h1><%= organization.name %></h1>
         <p><%= organization.description %></p>

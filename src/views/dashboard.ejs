@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+
+<main id="main-content" class="container">
+    <section class="dashboard-intro">
+        <p class="eyebrow">Your Service Connect</p>
+        <h1><%= title %></h1>
+        <p class="lead">Welcome, <%= name %>. Here’s your account overview.</p>
+    </section>
+
+    <section class="profile-card" aria-labelledby="account-heading">
+        <div class="profile-mark" aria-hidden="true"><%= name.trim().charAt(0).toUpperCase() %></div>
+        <div>
+            <p class="eyebrow">Signed in as</p>
+            <h2 id="account-heading"><%= name %></h2>
+            <p><%= email %></p>
+        </div>
+        <span class="role-pill"><%= currentUser.role_name %></span>
+    </section>
+
+    <% if (currentUser.role_name === 'admin') { %>
+        <section class="admin-panel">
+            <div>
+                <p class="eyebrow">Administration</p>
+                <h2>Manage your community</h2>
+                <p>Review registered accounts and keep service listings up to date.</p>
+            </div>
+            <a class="button" href="/users">View registered users</a>
+        </section>
+    <% } else { %>
+        <section class="panel dashboard-actions">
+            <h2>Find your next way to help</h2>
+            <p>Explore local projects and organizations looking for volunteers.</p>
+            <a class="button" href="/projects">Browse projects</a>
+        </section>
+    <% } %>
+</main>
+
+<%- include('partials/footer') %>
