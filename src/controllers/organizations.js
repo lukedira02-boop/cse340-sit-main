@@ -14,7 +14,7 @@ export const organizationValidation = [
     body('contactEmail').trim().notEmpty().withMessage('Contact email is required.')
         .isEmail().withMessage('Enter a valid contact email.')
         .isLength({ max: 255 }).withMessage('Contact email cannot exceed 255 characters.'),
-    body('logoFilename').optional({ values: 'falsy' }).trim()
+    body('logo').optional({ values: 'falsy' }).trim()
         .isLength({ max: 255 }).withMessage('Logo path cannot exceed 255 characters.')
 ];
 
@@ -85,15 +85,15 @@ export const processEditOrganizationForm = async (req, res, next) => {
                     name: submitted(req.body.name, organization.name),
                     description: submitted(req.body.description, organization.description),
                     email: submitted(req.body.contactEmail, organization.email),
-                    logo: submitted(req.body.logoFilename, organization.logo)
+                    logo: submitted(req.body.logo, organization.logo)
                 },
                 errors
             });
         }
 
-        const { name, description, contactEmail, logoFilename } = req.body;
-        const logo = typeof logoFilename === 'string' && logoFilename.trim()
-            ? logoFilename.trim()
+        const { name, description, contactEmail, logo: submittedLogo } = req.body;
+        const logo = typeof submittedLogo === 'string' && submittedLogo.trim()
+            ? submittedLogo.trim()
             : organization.logo || DEFAULT_ORGANIZATION_LOGO;
         await updateOrganization(Number(req.params.id), name, description, contactEmail, logo);
         req.flash('success', 'Organization updated successfully.');

@@ -44,8 +44,8 @@
                 <% if (fieldErrors('contactEmail').length) { %><small class="field-error" id="email-error"><%= fieldErrors('contactEmail').map((error) => error.msg).join(' ') %></small><% } %>
             </div>
             <div class="form-field">
-                <label for="logoFilename">Organization image path</label>
-                <input id="logoFilename" name="logoFilename" type="text" list="organization-image-options" maxlength="255" value="<%= organization.logo %>" placeholder="Choose a suggestion or enter an image path" aria-invalid="<%= fieldErrors('logoFilename').length > 0 %>" aria-describedby="logo-hint<%= fieldErrors('logoFilename').length ? ' logo-error' : '' %>">
+                <label for="logo">Logo filename</label>
+                <input id="logo" name="logo" type="text" list="organization-image-options" maxlength="255" value="<%= organization.logo %>" placeholder="Choose a suggestion or enter an image path" aria-invalid="<%= fieldErrors('logo').length > 0 %>" aria-describedby="logo-hint<%= fieldErrors('logo').length ? ' logo-error' : '' %>">
                 <datalist id="organization-image-options">
                     <option value="/images/organization-placeholder.svg">Placeholder</option>
                     <option value="/images/bright-futures-tutoring.svg">Bright Futures Tutoring</option>
@@ -61,7 +61,7 @@
                     <option value="/images/community-hero.jpg">Community photo</option>
                 </datalist>
                 <small id="logo-hint">Keep the current value to retain this image, choose a bundled image suggestion, or enter an image path or HTTPS URL.</small>
-                <% if (fieldErrors('logoFilename').length) { %><small class="field-error" id="logo-error"><%= fieldErrors('logoFilename').map((error) => error.msg).join(' ') %></small><% } %>
+                <% if (fieldErrors('logo').length) { %><small class="field-error" id="logo-error"><%= fieldErrors('logo').map((error) => error.msg).join(' ') %></small><% } %>
             </div>
             <div class="form-actions">
                 <button class="button" type="submit">Save changes</button>
